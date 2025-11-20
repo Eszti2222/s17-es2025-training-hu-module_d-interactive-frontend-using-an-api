@@ -8,7 +8,7 @@ Create a modern frontend application using a JavaScript framework to interact wi
 
 ## Task Origin
 
-This project task is based on test projects from the **EuroSkills 2025 Training Competition HU** for **Module D - Interactive Frontend using an API**. Tasks from these competitions are updated, modularized, and standardized to form the basis of the project task repository within the Erasmus+ **"Marketable IT Skills : Integrating Real-World Challenges into Vocational Education"** project.
+This project task is based on test projects from the **EuroSkills 2025 Training Competition HU** for **Module D - Interactive Frontend using an API** submitted by the Skills IT team (HU). Tasks from these competitions are updated, modularized, and standardized to form the basis of the project task repository within the Erasmus+ **"Marketable IT Skills : Integrating Real-World Challenges into Vocational Education"** project.
 
 ## Content
 
