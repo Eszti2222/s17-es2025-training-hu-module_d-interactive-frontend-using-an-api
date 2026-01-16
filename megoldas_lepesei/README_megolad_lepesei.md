@@ -115,7 +115,7 @@ export default App;
 
 ## Formázás készítése a mintának megfelelelően
 
-Külön navigation.css-t készíts!
+Külön navigation.css-t készíts! 
 
 # 1. Login és regisztrációs űrlapok
 
