@@ -3,16 +3,22 @@ import { NavLink } from "react-router";
 import "./login.css";
 
 function RegistrationPage() {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
   const [errors, setErrors] = useState({});
+
 
   function validateForm() {
     const newErrors = {};
 
     if (!name) {
       newErrors.name = "A név megadása kötelező";
+    } else if (name.length < 3) {
+      newErrors.name =
+        "A névnek legalább 3 karakter hosszúnak kell lennie";
     }
 
     if (!email) {
@@ -28,20 +34,30 @@ function RegistrationPage() {
         "A jelszónak legalább 6 karakter hosszúnak kell lennie";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    if (!cpassword) {
+      newErrors.cpassword = "Ismételd meg a jelszót";
+    } else if (password !== cpassword) {
+      newErrors.cpassword = "A két jelszó nem egyezik";
+    }
+
+    return newErrors;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (validateForm()) {
-      console.log("Regisztrációs adatok:", {
-        name,
-        email,
-        password,
-      });
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
     }
+
+    console.log("Regisztrációs adatok:", {
+      name,
+      email,
+      password,
+      cpassword,
+    });
   }
 
   return (
@@ -85,6 +101,18 @@ function RegistrationPage() {
           )}
         </div>
 
+        <div className="form-group">
+          <label>Jelszó megerősítése</label>
+          <input
+            type="password"
+            value={cpassword}
+            onChange={(e) => setCPassword(e.target.value)}
+          />
+          {errors.cpassword && (
+            <span className="error-text">{errors.cpassword}</span>
+          )}
+        </div>
+
         <button type="submit">Regisztráció</button>
       </form>
 
@@ -96,3 +124,30 @@ function RegistrationPage() {
 }
 
 export default RegistrationPage;
+
+/*
+REGISTRATIONPAGE ÖSSZEFOGLALÓ
+
+Ez a komponens az új felhasználók regisztrációját valósítja meg.
+
+- A komponens saját state-eket használ a név, email, jelszó és
+  jelszó megerősítés (cpassword) mezők kezelésére.
+- Az input mezők controlled inputként működnek, a value értékük
+  mindig a state-ből származik, az onChange esemény frissíti azt.
+- Az errors state egy objektum, amely mezőnként tartalmazza
+  a validáció során keletkező hibaüzeneteket.
+- A validateForm függvény ellenőrzi:
+  - a név meglétét és minimális hosszát
+  - az email kötelező jellegét és formátumát
+  - a jelszó hosszát
+  - a jelszó és a jelszó megerősítés egyezőségét
+  A függvény egy hibaobjektumot ad vissza.
+- A handleSubmit függvény megakadályozza az oldal újratöltését,
+  meghívja a validációt, és csak akkor folytatja a feldolgozást,
+  ha nincs hiba.
+- A hibaüzenetek az input mezők alatt jelennek meg, csak akkor,
+  ha az adott mezőhöz tartozik hiba.
+- A form alján NavLink segítségével biztosított az átjárás
+  a bejelentkezési oldalra.
+*/
+
