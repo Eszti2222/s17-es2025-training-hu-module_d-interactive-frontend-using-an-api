@@ -8,32 +8,36 @@ function LoginPage() {
   const [errors, setErrors] = useState({});
 
   function validateForm() {
-    const newErrors = {};
+  const newErrors = {};
 
-    if (!email) {
-      newErrors.email = "Az email cím kötelező";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Érvénytelen email formátum";
-    }
-
-    if (!password) {
-      newErrors.password = "A jelszó kötelező";
-    } else if (password.length < 6) {
-      newErrors.password =
-        "A jelszónak legalább 6 karakter hosszúnak kell lennie";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  if (!email) {
+    newErrors.email = "Az email cím kötelező";
+  } else if (!/\S+@\S+\.\S+/.test(email)) {
+    newErrors.email = "Érvénytelen email formátum";
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (validateForm()) {
-      console.log("Login adatok:", { email, password });
-    }
+  if (!password) {
+    newErrors.password = "A jelszó kötelező";
+  } else if (password.length < 6) {
+    newErrors.password =
+      "A jelszónak legalább 6 karakter hosszúnak kell lennie";
   }
+
+  return newErrors;
+}
+
+
+ function handleSubmit(e) {
+  e.preventDefault();
+
+  const validationErrors = validateForm();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  console.log("Login adatok:", { email, password });
+}
 
   return (
     <div className="auth-container">
