@@ -79,3 +79,26 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+
+/*
+LOGINPAGE ÖSSZEFOGLALÓ
+
+Ez a komponens a felhasználó bejelentkezését valósítja meg.
+
+- A beviteli mezők (email, password) saját state-ben vannak tárolva
+  a useState hook segítségével.
+- Az input mezők controlled inputok, vagyis a value mindig a state-ből
+  érkezik, és az onChange esemény frissíti a state-et.
+- Az errors state egy objektum, amely a validáció során keletkező
+  hibaüzeneteket tartalmazza mezőnként (pl. email, password).
+- A validateForm függvény ellenőrzi az űrlap mezőit, és egy hibaobjektumot
+  ad vissza, amelyet a submit eseményben dolgozunk fel.
+- A handleSubmit függvény megakadályozza az oldal újratöltését,
+  meghívja a validációt, és csak akkor engedi tovább a feldolgozást,
+  ha nincs hiba.
+- A hibaüzenetek csak akkor jelennek meg, ha az adott mezőhöz
+  tartozik hiba az errors objektumban.
+- A form alján NavLink segítségével biztosított az átjárás
+  a regisztrációs oldalra.
+*/
