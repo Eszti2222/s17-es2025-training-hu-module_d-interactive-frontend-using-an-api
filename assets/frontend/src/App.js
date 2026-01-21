@@ -56,7 +56,26 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+   return (
+    <AuthProvider>
+      <CoursesProvider>
+        
+         <MentorProvider>
+          <RouterProvider router={router} />;
+        </MentorProvider>
+      </CoursesProvider>
+    </AuthProvider>
+  );
 }
 
 export default App;
+
+/*
+App.js – Provider "ölelgetés" magyarázat:
+
+- A különböző Context Provider-ek (AuthProvider, CoursesProvider, MentorProvider) hierarchikusan ölelik körbe a RouterProvider-t.
+- Ez azt jelenti, hogy a RouterProvider alatti összes komponens hozzáfér a context-ekhez.
+- Például: bármely komponens eléri a felhasználói adatokat (AuthContext), a kurzus adatokat (CoursesContext) és a mentor adatokat (MentorContext) anélkül, hogy prop-okon keresztül kellene átadni.
+- A sorrend fontos: a belső provider-ek hozzáférnek a külső provider-ek state-jéhez, ha szükséges.
+- Ez a minta biztosítja a globális állapotkezelést és a context-ek újrafelhasználhatóságát.
+*/

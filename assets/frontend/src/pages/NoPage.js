@@ -8,3 +8,15 @@ export default function NoPage() {
     </div>
   );
 }
+
+/*
+NoPage.js magyarázat:
+
+- Ez a komponens a "404 - Not Found" oldalunk.
+- Akkor jelenik meg, ha a felhasználó olyan útvonalra navigál,
+  ami nincs definiálva a React Router-ben.
+- Egyszerű üzenetet mutat: "Az oldal nem található".
+- Tartalmaz egy hivatkozást (<a href="/login">) a bejelentkezési oldalra,
+  hogy a felhasználó könnyen visszataláljon az érvényes oldalra.
+- Inline stílusokat használ a középre igazítás és padding miatt.
+*/
