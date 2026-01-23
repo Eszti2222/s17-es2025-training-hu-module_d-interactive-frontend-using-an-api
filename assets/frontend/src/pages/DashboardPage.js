@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import "../css/dashboard.css";
 
 import {
   Chart as ChartJS,
