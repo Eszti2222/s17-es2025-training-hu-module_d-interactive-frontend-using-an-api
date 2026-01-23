@@ -3,6 +3,8 @@ import Mentor from "../components/Mentor";
 import { MentorContext } from "../contexts/MentorContext";
 import { AuthContext } from "../contexts/AuthContext";
 
+import "../css/mentor.css";
+
 export default function MentorsPage() {
   const { mentorList, getMentor } = useContext(MentorContext);
   const { user, loadUser, loading } = useContext(AuthContext);
