@@ -1,0 +1,85 @@
+
+/* ===========================
+   MENTORS PAGE STYLING
+   =========================== */
+
+.mentors-page {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mentors-page h1 {
+  margin-bottom: 15px;
+}
+
+/* Blue credit box */
+.balance-box {
+  background: #e8f2ff;
+  border: 1px solid black;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+
+/* Mentor list */
+.mentor-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* Mentor card */
+.mentor-card {
+  background: white;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.mentor-card h2 {
+  margin-bottom: 10px;
+}
+
+/* Session card */
+.session-card {
+  border: 1px solid black;
+  margin-top: 12px;
+  padding: 15px;
+  background: white;
+}
+
+/* Status labels */
+.session-status {
+  padding: 5px 10px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.status-pending {
+  background: #fff6c4;
+}
+
+.status-booked {
+  background: #d8f2d8;
+}
+
+.status-rejected {
+  background: #ffd6d6;
+}
+
+/* Session details grid */
+.session-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.session-info-grid div {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.session-card button {
+  margin-top: 15px;
+  width: 100%;
+}
