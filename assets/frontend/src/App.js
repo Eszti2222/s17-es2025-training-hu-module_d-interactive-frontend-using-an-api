@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import Layout from "./pages/Layout";
@@ -9,8 +8,13 @@ import MentorsPage from "./pages/MentorsPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import authMiddleware from "./middleware/autMiddleware";
+import { CoursesProvider } from "./contexts/CoursesContext";
+import { MentorProvider } from "./contexts/MentorContext";
+import BookedSessionPage from "./pages/BookedSessionPage";
 function App() {
-   const router = createBrowserRouter([
+  const router = createBrowserRouter([
     {
       path: "/login",
       element: <LoginPage />,
@@ -22,13 +26,14 @@ function App() {
     {
       path: "/",
       element: <Layout />,
+      middleware: [authMiddleware],
       children: [
         {
           index: true,
           element: <Navigate to="/dashboard" replace />,
         },
         {
-          path: "dashboard",
+          path: "/dashboard",
           element: <DashboardPage />,
         },
         {
@@ -45,8 +50,16 @@ function App() {
           ],
         },
         {
-          path: "mentors",
+          path: "/courses/{id}",
+          element: <CourseDetailsPage />,
+        },
+        {
+          path: "/mentors",
           element: <MentorsPage />,
+        },
+                {
+          path: "/bookedsession",
+          element: <BookedSessionPage />,
         },
       ],
     },
@@ -55,13 +68,12 @@ function App() {
       element: <NoPage />,
     },
   ]);
-
-   return (
+  return (
     <AuthProvider>
       <CoursesProvider>
         
          <MentorProvider>
-          <RouterProvider router={router} />;
+          <RouterProvider router={router} />
         </MentorProvider>
       </CoursesProvider>
     </AuthProvider>
