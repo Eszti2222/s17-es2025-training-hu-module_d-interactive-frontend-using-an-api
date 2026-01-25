@@ -1,14 +1,15 @@
-import { useState } from "react";
+
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
-import "./login.css";
+import "./css/login.css";
+import { AuthContext } from "../contexts/AuthContext"
+
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("c@c.hu");
+  const [password, setPassWord] = useState("Aa123456");
   const [errors, setErrors] = useState({});
   const { login, serverError } = useContext(AuthContext);
-
-  login({ email, password });
 
   function validateForm() {
     const newErrors = {};

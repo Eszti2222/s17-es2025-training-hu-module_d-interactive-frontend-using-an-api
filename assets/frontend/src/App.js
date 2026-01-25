@@ -9,7 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import CourseDetailsPage from "./pages/CourseDetailsPage";
 import { AuthProvider } from "./contexts/AuthContext";
-import authMiddleware from "./middleware/autMiddleware";
+import authMiddleware from "./middleware/authMiddleware";
 import { CoursesProvider } from "./contexts/CoursesContext";
 import { MentorProvider } from "./contexts/MentorContext";
 import BookedSessionPage from "./pages/BookedSessionPage";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
-import "./login.css";
+import "./css/login.css";
 
 function RegistrationPage() {
 

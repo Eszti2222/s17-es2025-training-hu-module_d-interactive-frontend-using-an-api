@@ -1,7 +1,7 @@
 
 // src/pages/CourseDetailsPage.js
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router";
 import { useContext } from "react";
 import { CoursesContext } from "../contexts/CoursesContext";
 
