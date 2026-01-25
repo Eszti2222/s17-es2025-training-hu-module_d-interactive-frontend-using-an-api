@@ -50,14 +50,14 @@ function App() {
           ],
         },
         {
-          path: "/courses/{id}",
+          path: ":id",
           element: <CourseDetailsPage />,
         },
         {
           path: "/mentors",
           element: <MentorsPage />,
         },
-                {
+        {
           path: "/bookedsession",
           element: <BookedSessionPage />,
         },
@@ -71,8 +71,7 @@ function App() {
   return (
     <AuthProvider>
       <CoursesProvider>
-        
-         <MentorProvider>
+        <MentorProvider>
           <RouterProvider router={router} />
         </MentorProvider>
       </CoursesProvider>
@@ -91,3 +90,18 @@ App.js – Provider "ölelgetés" magyarázat:
 - A sorrend fontos: a belső provider-ek hozzáférnek a külső provider-ek state-jéhez, ha szükséges.
 - Ez a minta biztosítja a globális állapotkezelést és a context-ek újrafelhasználhatóságát.
 */
+
+/*
+App.js – Context Provider és Router struktúra magyarázat
+
+- Az AuthProvider, CoursesProvider és MentorProvider körbeöleli a RouterProvider-t,
+  így az alkalmazás összes route-ja és komponense hozzáfér a globális state-ekhez.
+- Az AuthProvider felel az autentikációért (bejelentkezés, kijelentkezés, token kezelés),
+  ezért kívül helyezkedik el, hogy minden más context és oldal használhassa az auth állapotot.
+- A RouterProvider a route konfiguráció alapján rendereli az oldalakat,
+  és a Layout komponensen keresztül biztosítja a védett (auth-olt) oldalak közös felépítését.
+- A middleware (authMiddleware) a Layout szintjén fut le,
+  így automatikusan védi az összes belső route-ot jogosulatlan hozzáférés ellen.
+- Ez a struktúra biztosítja a skálázható, jól karbantartható és biztonságos alkalmazásfelépítést.
+*/
+

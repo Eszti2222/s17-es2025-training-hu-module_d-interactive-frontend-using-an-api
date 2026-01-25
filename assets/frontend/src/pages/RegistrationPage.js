@@ -52,12 +52,15 @@ function RegistrationPage() {
       return;
     }
 
-    console.log("Regisztrációs adatok:", {
+   /* console.log("Regisztrációs adatok:", {
       name,
       email,
       password,
       cpassword,
-    });
+    });*/
+
+    register({ name, email, password, cpassword });
+
   }
 
   return (
@@ -149,5 +152,18 @@ Ez a komponens az új felhasználók regisztrációját valósítja meg.
   ha az adott mezőhöz tartozik hiba.
 - A form alján NavLink segítségével biztosított az átjárás
   a bejelentkezési oldalra.
+*/
+
+
+/*
+RegistrationPage – Regisztrációs oldal
+
+- A komponens új felhasználók adatainak bekérésére szolgál.
+- A kliensoldali validáció biztosítja az alap adatminőséget
+  (kötelező mezők, email formátum, jelszó egyezés).
+- A sikeres validáció után a regisztrációs folyamatot
+  az AuthContext register() függvénye végzi el.
+- Az API kommunikáció és a hibakezelés nem a komponens feladata,
+  ezzel a komponens tiszta UI logikát valósít meg.
 */
 

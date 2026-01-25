@@ -6,38 +6,40 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { login, serverError } = useContext(AuthContext);
+
+  login({ email, password });
 
   function validateForm() {
-  const newErrors = {};
+    const newErrors = {};
 
-  if (!email) {
-    newErrors.email = "Az email cím kötelező";
-  } else if (!/\S+@\S+\.\S+/.test(email)) {
-    newErrors.email = "Érvénytelen email formátum";
+    if (!email) {
+      newErrors.email = "Az email cím kötelező";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Érvénytelen email formátum";
+    }
+
+    if (!password) {
+      newErrors.password = "A jelszó kötelező";
+    } else if (password.length < 6) {
+      newErrors.password =
+        "A jelszónak legalább 6 karakter hosszúnak kell lennie";
+    }
+
+    return newErrors;
   }
 
-  if (!password) {
-    newErrors.password = "A jelszó kötelező";
-  } else if (password.length < 6) {
-    newErrors.password =
-      "A jelszónak legalább 6 karakter hosszúnak kell lennie";
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    console.log("Login adatok:", { email, password });
   }
-
-  return newErrors;
-}
-
-
- function handleSubmit(e) {
-  e.preventDefault();
-
-  const validationErrors = validateForm();
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    return;
-  }
-
-  console.log("Login adatok:", { email, password });
-}
 
   return (
     <div className="auth-container">
@@ -51,9 +53,7 @@ function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && (
-            <span className="error-text">{errors.email}</span>
-          )}
+          {errors.email && <span className="error-text">{errors.email}</span>}
         </div>
 
         <div className="form-group">
@@ -80,7 +80,6 @@ function LoginPage() {
 
 export default LoginPage;
 
-
 /*
 LOGINPAGE ÖSSZEFOGLALÓ
 
@@ -102,3 +101,17 @@ Ez a komponens a felhasználó bejelentkezését valósítja meg.
 - A form alján NavLink segítségével biztosított az átjárás
   a regisztrációs oldalra.
 */
+
+/*
+LoginPage – Bejelentkezési oldal
+
+- A komponens a felhasználó bejelentkezési adatait gyűjti be (email, jelszó).
+- Az input mezők controlled inputként működnek, a state mindig a valós értéket tükrözi.
+- A validateForm függvény kliensoldali validációt végez,
+  így hibás adatok nem kerülnek elküldésre a backend felé.
+- A sikeres validáció után az autentikációs folyamatot
+  az AuthContext login() függvénye kezeli.
+- A komponens nem tartalmaz közvetlen API hívást,
+  kizárólag a felhasználói interakcióért és visszajelzésért felel.
+*/
+
