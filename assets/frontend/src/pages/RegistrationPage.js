@@ -1,8 +1,10 @@
-import { useState } from "react";
 import { NavLink } from "react-router";
 import "./css/login.css";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 function RegistrationPage() {
+  const { register, serverError } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,15 +12,13 @@ function RegistrationPage() {
   const [cpassword, setCPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-
   function validateForm() {
     const newErrors = {};
 
     if (!name) {
       newErrors.name = "A név megadása kötelező";
     } else if (name.length < 3) {
-      newErrors.name =
-        "A névnek legalább 3 karakter hosszúnak kell lennie";
+      newErrors.name = "A névnek legalább 3 karakter hosszúnak kell lennie";
     }
 
     if (!email) {
@@ -52,7 +52,7 @@ function RegistrationPage() {
       return;
     }
 
-   /* console.log("Regisztrációs adatok:", {
+    /* console.log("Regisztrációs adatok:", {
       name,
       email,
       password,
@@ -60,7 +60,6 @@ function RegistrationPage() {
     });*/
 
     register({ name, email, password, cpassword });
-
   }
 
   return (
@@ -75,9 +74,7 @@ function RegistrationPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          {errors.name && (
-            <span className="error-text">{errors.name}</span>
-          )}
+          {errors.name && <span className="error-text">{errors.name}</span>}
         </div>
 
         <div className="form-group">
@@ -87,9 +84,7 @@ function RegistrationPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && (
-            <span className="error-text">{errors.email}</span>
-          )}
+          {errors.email && <span className="error-text">{errors.email}</span>}
         </div>
 
         <div className="form-group">
@@ -154,7 +149,6 @@ Ez a komponens az új felhasználók regisztrációját valósítja meg.
   a bejelentkezési oldalra.
 */
 
-
 /*
 RegistrationPage – Regisztrációs oldal
 
@@ -166,4 +160,3 @@ RegistrationPage – Regisztrációs oldal
 - Az API kommunikáció és a hibakezelés nem a komponens feladata,
   ezzel a komponens tiszta UI logikát valósít meg.
 */
-
