@@ -1,9 +1,7 @@
-
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import "./css/login.css";
-import { AuthContext } from "../contexts/AuthContext"
-
+import { AuthContext } from "../contexts/AuthContext";
 
 function LoginPage() {
   const [email, setEmail] = useState("c@c.hu");
@@ -62,7 +60,7 @@ function LoginPage() {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassWord(e.target.value)}
           />
           {errors.password && (
             <span className="error-text">{errors.password}</span>
@@ -115,4 +113,3 @@ LoginPage – Bejelentkezési oldal
 - A komponens nem tartalmaz közvetlen API hívást,
   kizárólag a felhasználói interakcióért és visszajelzésért felel.
 */
-
